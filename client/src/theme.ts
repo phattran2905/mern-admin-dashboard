@@ -1,3 +1,5 @@
+import { PaletteMode, ThemeOptions } from "@mui/material";
+
 interface TokenObject {
 	grey: {
 		[code: string]: string;
@@ -78,7 +80,7 @@ function reverseTokens(tokensDark: TokenObject) {
 export const tokensLight = reverseTokens(tokensDark);
 
 // mui theme settings
-export const themeSettings = (mode: "dark" | "light") => {
+export const themeSettings = (mode: PaletteMode): Partial<ThemeOptions> => {
 	return {
 		palette: {
 			mode: mode,
@@ -100,7 +102,7 @@ export const themeSettings = (mode: "dark" | "light") => {
 						},
 						background: {
 							default: tokensDark.primary[600],
-							alt: tokensDark.primary[500],
+							// alt: tokensDark.primary[500],
 						},
 				  }
 				: {
@@ -121,7 +123,7 @@ export const themeSettings = (mode: "dark" | "light") => {
 						},
 						background: {
 							default: tokensDark.grey[0],
-							alt: tokensDark.grey[50],
+							// alt: tokensDark.grey[50],
 						},
 				  }),
 		},
