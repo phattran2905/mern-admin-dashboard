@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
 		"paths": {
-			"@/*": ["./src/*"]
+			"@/*": ["./src/*"],
+			"@scenes/*": ["./src/scenes/*"],
+			"@components/*": ["./src/components/*"],
+			"@state/*": ["./src/state/*"]
 		},
 		"target": "ES2020",
 		"useDefineForClassFields": true,
