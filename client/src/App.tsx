@@ -4,6 +4,8 @@ import { createTheme } from "@mui/material/styles";
 import { useAppSelector } from "@/hooks";
 import { themeSettings } from "@/theme";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Layout from "@scenes/layout";
+import Dashboard from "@scenes/dashboard";
 
 type Props = {};
 function App({}: Props) {
@@ -16,8 +18,20 @@ function App({}: Props) {
 				<ThemeProvider theme={theme}>
 					<CssBaseline />
 					<Routes>
-						<Route>
-							<Route element={<></>} />
+						<Route element={<Layout />}>
+							<Route
+								path="/"
+								element={
+									<Navigate
+										to={"/dashboard"}
+										replace
+									/>
+								}
+							/>
+							<Route
+								path="/dashboard"
+								element={<Dashboard />}
+							/>
 						</Route>
 					</Routes>
 				</ThemeProvider>
