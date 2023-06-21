@@ -1,5 +1,6 @@
 import {
 	Box,
+	Button,
 	Divider,
 	Drawer,
 	IconButton,
@@ -28,6 +29,7 @@ import {
 	TrendingUpOutlined,
 	PublicOutlined,
 	PieChartOutlined,
+	ArrowDropDownOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -39,6 +41,7 @@ type Props = {
 	isSidebarOpen: boolean;
 	setIsSidebarOpen: (value: boolean) => void;
 	isNonMobile: boolean;
+	user?: User;
 };
 
 const navItems = [
@@ -100,7 +103,7 @@ const navItems = [
 	},
 ];
 
-function Sidebar({ drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile }: Props) {
+function Sidebar({ drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile, user }: Props) {
 	const { pathname } = useLocation();
 	const [active, setActive] = useState("");
 	const navigate = useNavigate();
@@ -131,11 +134,7 @@ function Sidebar({ drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile }: 
 				>
 					<Box width="100%">
 						<Box m="1.5rem 2rem 2rem 3rem">
-							<FlexBetween
-								sx={{
-									color: theme.palette.secondary,
-								}}
-							>
+							<FlexBetween color={theme.palette.secondary.main}>
 								<Box
 									display="flex"
 									alignItems="center"
@@ -206,6 +205,58 @@ function Sidebar({ drawerWidth, isSidebarOpen, setIsSidebarOpen, isNonMobile }: 
 								);
 							})}
 						</List>
+					</Box>
+
+					<Box
+						position={"absolute"}
+						bottom={"2rem"}
+					>
+						<Divider />
+						<FlexBetween
+							textTransform={"none"}
+							gap="1rem"
+							m="1.5rem 2rem 0 3rem"
+						>
+							<FlexBetween>
+								<Button
+									sx={{
+										display: "flex",
+										justifyContent: "space-between",
+										alignItems: "center",
+										textTransform: "none",
+										gap: "1rem",
+									}}
+								>
+									<Box
+										component="img"
+										alt="profile"
+										src={profileImage}
+										height="32px"
+										width="32px"
+										borderRadius="50%"
+										sx={{ objectFit: "cover" }}
+									/>
+									<Box textAlign="left">
+										<Typography
+											fontWeight="bold"
+											fontSize="0.85rem"
+											sx={{ color: theme.palette.secondary[100] }}
+										>
+											{user?.name}
+										</Typography>
+										<Typography
+											fontSize="0.75rem"
+											sx={{ color: theme.palette.secondary[200] }}
+										>
+											{user?.occupation}
+										</Typography>
+									</Box>
+									<ArrowDropDownOutlined
+										sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
+									/>
+								</Button>
+							</FlexBetween>
+						</FlexBetween>
 					</Box>
 				</Drawer>
 			)}
