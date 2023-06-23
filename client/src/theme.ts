@@ -1,19 +1,14 @@
-import { PaletteColor, PaletteMode, ThemeOptions } from "@mui/material";
-
-interface TokenObject {
-	grey: {
-		[code: string]: string;
-	};
-	primary: {
-		[code: string]: string;
-	};
-	secondary: {
-		[code: string]: string;
-	};
-}
+import {
+	PaletteColorOptions,
+	PaletteOptions,
+	PaletteMode,
+	ThemeOptions,
+	Color,
+} from "@mui/material";
+import "./types/MUIStyles";
 
 // color design tokens export
-export const tokensDark: TokenObject = {
+export const tokensDark: PaletteOptions = {
 	grey: {
 		0: "#ffffff", // manually adjusted
 		10: "#f6f6f6", // manually adjusted
@@ -57,77 +52,78 @@ export const tokensDark: TokenObject = {
 };
 
 // function that reverses the color palette
-function reverseTokens(tokensDark: TokenObject) {
-	const reversedTokens: TokenObject | Record<string, any> = {};
+function reverseTokens(tokensDark: PaletteOptions) {
+	const reversedTokens: PaletteOptions = {};
 
 	for (const [key, value] of Object.entries(tokensDark)) {
-		const keys = Object.keys(value);
-		const values = Object.values(value);
+		const keys: string[] = Object.keys(value);
+		const values: string[] = Object.values(value);
 		const length: number = keys.length;
-		const reversedObject: typeof value = {};
+		const reversedObject: PaletteColorOptions = {};
 
 		for (let i = 0; i < length; i++) {
-			const codeName = keys[i] as keyof typeof value;
-			reversedObject[codeName] = values[length - i - 1];
+			reversedObject[keys[i] as keyof Color] = values[length - i - 1];
 		}
 
-		reversedTokens[key as keyof TokenObject] = reversedObject;
+		reversedTokens[key] = reversedObject;
 	}
 
 	return reversedTokens;
 }
 
-export const tokensLight = reverseTokens(tokensDark) as TokenObject;
+export const tokensLight: PaletteOptions = reverseTokens(tokensDark);
 
 // mui theme settings
-export const themeSettings = (mode: PaletteMode): Partial<ThemeOptions> => {
+export const themeSettings = (mode: PaletteMode): ThemeOptions => {
+	const darkThemeOptions: PaletteOptions = {
+		// palette values for dark mode
+		primary: {
+			...tokensDark.primary,
+			main: tokensDark.primary?.[400],
+			light: tokensDark.primary?.[400],
+		},
+		secondary: {
+			...tokensDark.secondary,
+			main: tokensDark.secondary?.[300],
+		},
+		neutral: {
+			...tokensDark.grey,
+			main: tokensDark.grey?.[500],
+		},
+		background: {
+			default: tokensDark.primary?.[600],
+			// alt: tokensDark.primary[500],
+			paper: tokensDark.primary?.[500],
+		},
+	};
+
+	const lightThemeOptions: PaletteOptions = {
+		// palette values for light mode
+		primary: {
+			...tokensLight.primary,
+			main: tokensDark.grey?.[50] as string,
+			light: tokensDark.grey?.[100],
+		},
+		secondary: {
+			...tokensLight.secondary,
+			main: tokensDark.secondary?.[600],
+			light: tokensDark.secondary?.[700],
+		},
+		neutral: {
+			...tokensLight.grey,
+			main: tokensDark.grey?.[500],
+		},
+		background: {
+			default: tokensDark.grey?.[0],
+			// alt: tokensDark.grey[50],
+			paper: tokensDark.grey?.[50],
+		},
+	};
+
 	return {
 		palette: {
-			mode: mode,
-			...(mode === "dark"
-				? {
-						// palette values for dark mode
-						primary: {
-							...tokensDark.primary,
-							main: tokensDark.primary[400],
-							light: tokensDark.primary[400],
-						},
-						secondary: {
-							...tokensDark.secondary,
-							main: tokensDark.secondary[300],
-						},
-						neutral: {
-							...tokensDark.grey,
-							main: tokensDark.grey[500],
-						},
-						background: {
-							default: tokensDark.primary[600],
-							// alt: tokensDark.primary[500],
-							paper: tokensDark.primary[500],
-						},
-				  }
-				: {
-						// palette values for light mode
-						primary: {
-							...tokensLight.primary,
-							main: tokensDark.grey[50],
-							light: tokensDark.grey[100],
-						},
-						secondary: {
-							...tokensLight.secondary,
-							main: tokensDark.secondary[600],
-							light: tokensDark.secondary[700],
-						},
-						neutral: {
-							...tokensLight.grey,
-							main: tokensDark.grey[500],
-						},
-						background: {
-							default: tokensDark.grey[0],
-							// alt: tokensDark.grey[50],
-							paper: tokensDark.grey[50],
-						},
-				  }),
+			mode,
+			...(mode === "dark" ? darkThemeOptions : lightThemeOptions),
 		},
 		typography: {
 			fontFamily: ["Inter", "sans-serif"].join(","),
