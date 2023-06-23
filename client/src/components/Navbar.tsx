@@ -6,6 +6,7 @@ import {
 	SettingsOutlined,
 	ArrowDropDownOutlined,
 } from "@mui/icons-material";
+import "@/types/MUIStyles";
 import {
 	AppBar,
 	Button,
@@ -22,17 +23,17 @@ import FlexBetween from "@components/FlexBetween";
 import { setMode } from "@/state";
 import profileImage from "@/assets/profile.jpeg";
 import { useAppDispatch } from "@/hooks";
-import { MouseEvent, MouseEventHandler, useState } from "react";
+import { MouseEvent, useState } from "react";
 
 type Props = {
 	isSidebarOpen: boolean;
 	setIsSidebarOpen: (value: boolean) => void;
 	user?: User;
 };
+
 function Navbar({ isSidebarOpen, setIsSidebarOpen, user }: Props) {
 	const dispatch = useAppDispatch();
 	const theme = useTheme();
-
 	const [anchorEl, setAnchorEl] = useState<Element | null>(null);
 	const isOpen = Boolean(anchorEl);
 	const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
@@ -106,7 +107,7 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen, user }: Props) {
 								<Typography
 									fontWeight="bold"
 									fontSize="0.85rem"
-									sx={{ color: theme.palette.secondary[100] }}
+									sx={{ color: theme.palette.secondary?.[100] }}
 								>
 									{user?.name}
 								</Typography>
