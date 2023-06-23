@@ -2,7 +2,9 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import app from "./app";
 import UserModel from "./models/User.model";
-import { dataUser } from "./data";
+import ProductModel from "./models/Product.model";
+import ProductStatModel from "./models/ProductStat.model";
+import { dataUser, dataProduct, dataProductStat } from "./data";
 
 config();
 
@@ -12,6 +14,8 @@ mongoose
 	.then(() => {
 		app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
 
+		// ProductModel.insertMany(dataProduct);
+		// ProductStatModel.insertMany(dataProductStat);
 		// UserModel.insertMany(dataUser);
 	})
 	.catch((error) => console.log(`${error} did not connect.`));

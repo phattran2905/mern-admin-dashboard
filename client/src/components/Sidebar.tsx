@@ -9,13 +9,10 @@ import {
 	ListItemButton,
 	ListItemIcon,
 	ListItemText,
-	PaletteColor,
-	Theme,
 	Typography,
 	useTheme,
 } from "@mui/material";
 import {
-	SettingsOutlined,
 	ChevronLeft,
 	ChevronRightOutlined,
 	HomeOutlined,

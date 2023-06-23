@@ -4,6 +4,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import generalRoutes from "./routes/general.route";
+import clientRoutes from "./routes/client.route";
 
 const app = Express();
 app.use(Express.json());
@@ -16,6 +17,7 @@ app.use(cors());
 
 // Routes
 app.get("/", (req, res, next) => res.status(200).send("Hello"));
+app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
 
 export default app;
