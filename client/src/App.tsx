@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Layout from "@scenes/layout";
 import Dashboard from "@scenes/dashboard";
 import Products from "@scenes/products";
+import Customers from "./scenes/customers";
 
 type Props = {};
 function App({}: Props) {
@@ -36,6 +37,10 @@ function App({}: Props) {
 							<Route
 								path="/products"
 								element={<Products />}
+							/>
+							<Route
+								path="/customers"
+								element={<Customers />}
 							/>
 						</Route>
 					</Routes>
