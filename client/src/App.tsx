@@ -6,6 +6,7 @@ import { themeSettings } from "@/theme";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Layout from "@scenes/layout";
 import Dashboard from "@scenes/dashboard";
+import Products from "@scenes/products";
 
 type Props = {};
 function App({}: Props) {
@@ -31,6 +32,10 @@ function App({}: Props) {
 							<Route
 								path="/dashboard"
 								element={<Dashboard />}
+							/>
+							<Route
+								path="/products"
+								element={<Products />}
 							/>
 						</Route>
 					</Routes>

@@ -32,13 +32,14 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "@components/FlexBetween";
 import profileImage from "@/assets/profile.jpeg";
+import { UserResponse } from "@/types/User";
 
 type Props = {
 	drawerWidth: string;
 	isSidebarOpen: boolean;
 	setIsSidebarOpen: (value: boolean) => void;
 	isNonMobile: boolean;
-	user?: User;
+	user?: UserResponse;
 };
 
 const navItems = [

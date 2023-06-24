@@ -1,10 +1,17 @@
 export interface ProductResponse {
 	_id: string;
 	name: string;
-	description: string;
 	price: number;
-	rating: number;
+	description: string;
 	category: string;
-	supply: string;
-	stat: string;
+	rating: number;
+	supply: number;
+	productStat: {
+		_id: string;
+		productId: string;
+		yearlySalesTotal: number;
+		yearlyTotalSoldUnits: number;
+		monthlyData?: string[];
+		dailyData?: string[];
+	};
 }

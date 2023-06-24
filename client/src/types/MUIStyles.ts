@@ -20,6 +20,10 @@ declare module "@mui/material" {
 			| Color;
 	}
 
+	interface Palette {
+		neutral?: Partial<Color>;
+	}
+
 	interface SimplePaletteColorOptions {
 		// TO-DO: Fix any type
 		[code: string]: any;
