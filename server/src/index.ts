@@ -4,7 +4,8 @@ import app from "./app";
 import UserModel from "./models/User.model";
 import ProductModel from "./models/Product.model";
 import ProductStatModel from "./models/ProductStat.model";
-import { dataUser, dataProduct, dataProductStat } from "./data";
+import TransactionModel from "./models/Transaction.model";
+import { dataUser, dataProduct, dataProductStat, dataTransaction } from "./data";
 
 config();
 
@@ -16,6 +17,7 @@ mongoose
 
 		// ProductModel.insertMany(dataProduct);
 		// ProductStatModel.insertMany(dataProductStat);
+		// TransactionModel.insertMany(dataTransaction);
 		// UserModel.insertMany(dataUser);
 	})
 	.catch((error) => console.log(`${error} did not connect.`));
