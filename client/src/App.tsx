@@ -9,6 +9,7 @@ import Dashboard from "@scenes/dashboard";
 import Products from "@scenes/products";
 import Customers from "./scenes/customers";
 import Transactions from "./scenes/transactions";
+import Geography from "./scenes/geography";
 
 type Props = {};
 function App({}: Props) {
@@ -46,6 +47,10 @@ function App({}: Props) {
 							<Route
 								path="/transactions"
 								element={<Transactions />}
+							/>
+							<Route
+								path="/geography"
+								element={<Geography />}
 							/>
 						</Route>
 					</Routes>

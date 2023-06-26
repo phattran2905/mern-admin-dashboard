@@ -4,7 +4,7 @@ import ProductStatModel, { IProductStat } from "../models/ProductStat.model";
 import TransactionModel, { ITransaction } from "../models/Transaction.model";
 import { HydratedDocument } from "mongoose";
 import UserModel, { IUser } from "../models/User.model";
-import PaginationQuery from "../types/PaginationQuery";
+const getCountryISO3 = require("country-iso-2-to-3");
 
 export const getProducts = async (req: Request, res: Response, next: NextFunction) => {
 	try {
@@ -76,6 +76,32 @@ export const getTransactions = async (req: Request, res: Response, next: NextFun
 		});
 
 		return res.status(200).json({ total, transactions });
+	} catch (error: any) {
+		return res.status(400).json({ message: error.message });
+	}
+};
+
+export const getGeography = async (req: Request, res: Response, next: NextFunction) => {
+	try {
+		const users: HydratedDocument<IUser>[] = await UserModel.find();
+
+		type mappedLocation = { [countryISO: string]: number };
+		const mappedLocations = users.reduce((acc: mappedLocation, { country }) => {
+			const countryISO3 = getCountryISO3(country);
+			if (!acc[countryISO3]) {
+				acc[countryISO3] = 0;
+			}
+
+			acc[countryISO3]++;
+			return acc;
+		}, <mappedLocation>{});
+
+		const formattedLocation = Object.entries(mappedLocations).map(([country, count]) => ({
+			id: country,
+			value: count,
+		}));
+
+		return res.status(200).json(formattedLocation);
 	} catch (error: any) {
 		return res.status(400).json({ message: error.message });
 	}
