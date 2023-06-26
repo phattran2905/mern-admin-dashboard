@@ -24,11 +24,12 @@ import { setMode } from "@/state";
 import profileImage from "@/assets/profile.jpeg";
 import { useAppDispatch } from "@/hooks";
 import { MouseEvent, useState } from "react";
+import { UserResponse } from "@/types/User";
 
 type Props = {
 	isSidebarOpen: boolean;
 	setIsSidebarOpen: (value: boolean) => void;
-	user?: User;
+	user?: UserResponse;
 };
 
 function Navbar({ isSidebarOpen, setIsSidebarOpen, user }: Props) {

@@ -5,6 +5,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import generalRoutes from "./routes/general.route";
 import clientRoutes from "./routes/client.route";
+import salesRoutes from "./routes/sales.route";
 
 const app = Express();
 app.use(Express.json());
@@ -19,5 +20,6 @@ app.use(cors());
 app.get("/", (req, res, next) => res.status(200).send("Hello"));
 app.use("/client", clientRoutes);
 app.use("/general", generalRoutes);
+app.use("/sales", salesRoutes);
 
 export default app;
