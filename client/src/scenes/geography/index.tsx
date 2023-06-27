@@ -86,7 +86,7 @@ function Geography({}: Props) {
 									{
 										on: "hover",
 										style: {
-											itemTextColor: theme.palette.background.alt,
+											itemTextColor: theme.palette.background.paper,
 											itemOpacity: 1,
 										},
 									},
