@@ -8,7 +8,7 @@ import { MapLocation } from "@/types/Geography";
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_BASE_URL }),
 	reducerPath: "adminApi",
-	tagTypes: ["User", "Products", "Customers", "Transactions", "Geography", "Sales"],
+	tagTypes: ["User", "Products", "Customers", "Transactions", "Geography", "Sales", "Admins"],
 	endpoints: (build) => ({
 		getUser: build.query<UserResponse, string>({
 			query: (id: string) => `general/user/${id}`,
@@ -46,6 +46,10 @@ export const api = createApi({
 			query: () => `sales/sales`,
 			providesTags: ["Sales"],
 		}),
+		getAdmins: build.query<UserResponse[], void>({
+			query: () => `management/admins`,
+			providesTags: ["Admins"],
+		}),
 	}),
 });
 
@@ -56,4 +60,5 @@ export const {
 	useGetTransactionsQuery,
 	useGetGeographyQuery,
 	useGetSalesQuery,
+	useGetAdminsQuery,
 } = api;
