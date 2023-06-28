@@ -5,6 +5,7 @@ import { UserResponse } from "@/types/User";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { MapLocation } from "@/types/Geography";
 import { PerformanceResponse } from "@/types/Performance";
+import { DashboardResponse } from "@/types/Dashboard";
 
 export const api = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_APP_BASE_URL }),
@@ -64,6 +65,10 @@ export const api = createApi({
 			query: (id: string) => `management/performance/${id}`,
 			providesTags: ["Performance"],
 		}),
+		getDashboard: build.query<DashboardResponse, void>({
+			query: () => `general/dashboard`,
+			providesTags: ["Performance"],
+		}),
 	}),
 });
 
@@ -76,4 +81,5 @@ export const {
 	useGetSalesQuery,
 	useGetAdminsQuery,
 	useGetUserPerformanceQuery,
+	useGetDashboardQuery,
 } = api;
