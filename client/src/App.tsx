@@ -15,9 +15,9 @@ import Daily from "./scenes/daily";
 import Monthly from "./scenes/monthly";
 import Breakdown from "./scenes/breakdown";
 import Admin from "./scenes/admin";
+import Performance from "./scenes/performance";
 
-type Props = {};
-function App({}: Props) {
+function App() {
 	const mode = useAppSelector((state) => state.global.mode);
 	const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
@@ -76,6 +76,10 @@ function App({}: Props) {
 							<Route
 								path="/admin"
 								element={<Admin />}
+							/>
+							<Route
+								path="/performance"
+								element={<Performance />}
 							/>
 						</Route>
 					</Routes>
