@@ -10,6 +10,7 @@ import Products from "@scenes/products";
 import Customers from "./scenes/customers";
 import Transactions from "./scenes/transactions";
 import Geography from "./scenes/geography";
+import Overview from "./scenes/overview";
 
 type Props = {};
 function App({}: Props) {
@@ -51,6 +52,10 @@ function App({}: Props) {
 							<Route
 								path="/geography"
 								element={<Geography />}
+							/>
+							<Route
+								path="/overview"
+								element={<Overview />}
 							/>
 						</Route>
 					</Routes>
