@@ -13,6 +13,7 @@ import Geography from "./scenes/geography";
 import Overview from "./scenes/overview";
 import Daily from "./scenes/daily";
 import Monthly from "./scenes/monthly";
+import Breakdown from "./scenes/breakdown";
 
 type Props = {};
 function App({}: Props) {
@@ -66,6 +67,10 @@ function App({}: Props) {
 							<Route
 								path="/monthly"
 								element={<Monthly />}
+							/>
+							<Route
+								path="/breakdown"
+								element={<Breakdown />}
 							/>
 						</Route>
 					</Routes>
